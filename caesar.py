@@ -1,13 +1,17 @@
-""" Declares and defines Caesar Cipher class """
-
-import sys
+""" Declares and defines Caesar Cipher class
+    Defines init, encrypt, and decrypt methods
+    Preserves the case and punctuation of the original text
+"""
 
 class CaesarCipher():
+    """ Class to perform a caesar cipher with user given key and file """
     def __init__(self, key):
+        """ Initializes the class """
         self.key = int(key)
         self.text = ""
 
     def encrypt(self, input_file):
+        """ Encrypts given file, preserves punctuation and case """
         self.key %= 26
         ciphertext = ""
         with open(input_file) as plaintext:
@@ -31,6 +35,7 @@ class CaesarCipher():
         print "Created file: ces-encrypted.txt\n"
 
     def decrypt(self, input_file):
+        """ Decrypts a given file """
         self.key %= 26
         plaintext = ""
         with open(input_file) as encrypted_text:

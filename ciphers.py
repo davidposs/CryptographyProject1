@@ -1,10 +1,12 @@
+""" Program implementing various cryptographic ciphers """
+
 from Railfence import RailfenceCipher
 from vig import VigenereCipher
 from caesar import CaesarCipher
 from RowTransposition import RowTransposition
 import argparse
 
-# """ Main function for the cipher programs """
+
 
 
 def main():
