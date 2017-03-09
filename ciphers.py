@@ -45,12 +45,12 @@ def main():
             if cipher == 'vig':
                 vig = VigenereCipher(key)
                 vig.decrypt(filename)
-            elif cipher == ['ces']:
+            elif cipher == 'ces':
                 ces = CaesarCipher(key)
                 ces.decrypt(filename)
             elif cipher == 'rtc':
                 rtc = RowTransposition(key)
-                rts.decrypt(filename)
+                rtc.decrypt(filename)
             elif cipher == 'rfc':
                 rfc = RailfenceCipher(key)
                 rfc.decrypt(filename)
