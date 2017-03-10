@@ -29,7 +29,10 @@ class Play:
     def encrypt(self, input_file, output_file):
         cipherText = ""
         with open(input_file) as plaintext:
-            text = plaintext.read()
+            text = plaintext.read().replace("\n", "")
+
+
+        print text
         myList = [i for i in text]
         for i in range(0, len(text)-1,2):
             if(myList[i] == myList[i+1]):
@@ -46,7 +49,7 @@ class Play:
     def decrypt(self, input_file, output_file):
         decryptedText = ""
         with open(input_file) as ciphertext:
-            text = ciphertext.read()
+            text = ciphertext.read().replace("\n", "")
         decList = [i for i in text]
         for i in range(0, len(text)-1,2):
             if(decList[i] == decList[i+1]):
