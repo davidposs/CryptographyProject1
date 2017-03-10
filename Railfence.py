@@ -2,18 +2,23 @@
 
 class RailfenceCipher():
     """ Preserves case. Uses an integer as a key """
-    def __init__(self, key):
+    def __init__(self):
         """ Initializes with empty text and user given key """
-        self.key = int(key)
+        self.key = 0
         self.text = ""
         self.railLengths = []
         self.railStarts = []
 
-    def encrypt(self, input_file):
+    def set_key(self, key):
+        self.key = int(key)
+
+    def encrypt(self, key, input_file, output_file):
         """ Preserves case, spacing and punctuation """
         with open(input_file) as text:
             self.text = text.read()
         ciphertext = ""
+
+        self.set_key(key)
 
         """ Used to jump to the next letter in the plaintext """
         offset = self.key
@@ -23,16 +28,17 @@ class RailfenceCipher():
                 if offset * j + i >= len(self.text):
                     continue
                 if len(ciphertext) >= len(self.text):
-                    encrypted_file = open('rfc-encrypted.txt', 'w')
+                    ciphertext = ciphertext.strip("\n", "")
+                    encrypted_file = open(output_file, 'w')
                     encrypted_file.write(ciphertext)
-                    print "Created file: rfc-encrytped.txt"
+                    print "Created file: " + output_file
                     return
                 else:
                     ciphertext += self.text[offset*j + i]
 
-        encrypted_file = open('rfc-encrypted.txt', 'w')
+        encrypted_file = open(output_file, 'w')
         encrypted_file.write(ciphertext)
-        print "Created file: rfc-encrypted.txt"
+        print "Created file: " + output_file
 
     def getRails(self):
         """ Used to facilitate decryption """
@@ -69,11 +75,12 @@ class RailfenceCipher():
         self.railLengths = railLengths
         self.railStarts = railStartIndexes
 
-    def decrypt(self, input_file):
+    def decrypt(self, key, input_file, output_file):
         """ Decrypts given ciphertext """
         with open(input_file) as text:
             self.text = text.read()#.replace('\n', "")
 
+        self.set_key(key)
         self.getRails()
         """ Current letter in the ciphertext """
         currentLetter = 0
@@ -93,7 +100,8 @@ class RailfenceCipher():
                 currentRail += 1
             currentRailIndex += 1
 
-        decrypted_file = open('rfc-decrypted.txt', 'w')
+        plaintext = plaintext.replace("\n", "")
+        decrypted_file = open(output_file, 'w')
         decrypted_file.write(plaintext)
-        print "Created file: rfc-decrypted.txt"
+        print "Created file: " + output_file
 

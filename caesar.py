@@ -5,7 +5,7 @@
 
 class CaesarCipher():
     """ Class to perform a caesar cipher with user given key and file """
-    def __init__(self, key):
+    def __init__(self):
         """ Initializes the class """
         self.key = 0
         self.text = ""
@@ -13,7 +13,7 @@ class CaesarCipher():
     def set_key(self, key):
         self.key = int(key)
 
-    def encrypt(self, key, input_file):
+    def encrypt(self, key, input_file, output_file):
         """ Encrypts given file, preserves punctuation and case """
         self.set_key(key)
         self.key %= 26
@@ -34,11 +34,11 @@ class CaesarCipher():
                         ciphertext += chr(ord(char) + self.key - 26)
             else:
                 ciphertext += char
-        encrypted_file = open("ces-encrypted.txt", 'w')
+        encrypted_file = open(output_file, 'w')
         encrypted_file.write(ciphertext)
-        print "Created file: ces-encrypted.txt\n"
+        print "Created file: " + output_file
 
-    def decrypt(self, key, input_file):
+    def decrypt(self, key, input_file, output_file):
         """ Decrypts a given file """
         self.set_key(key)
         self.key %= 26
@@ -60,8 +60,7 @@ class CaesarCipher():
             else:
                 plaintext += char
 
-        decrypted_file = open("ces-decrypted.txt", 'w')
+        decrypted_file = open(output_file, 'w')
         decrypted_file.write(plaintext)
         print "Created file: ces-decrypted.txt"
-
 #end
