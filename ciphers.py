@@ -7,8 +7,6 @@ from RowTransposition import RowTransposition
 import argparse
 
 
-
-
 def main():
 #    main function
     parser = argparse.ArgumentParser(description = "Multi-cipher encryption program")
