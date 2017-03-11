@@ -10,16 +10,18 @@ class RailfenceCipher():
         self.railLengths = []
         self.railStarts = []
 
-    def set_key(self, key):
-        self.key = int(key)
+    def setKey(self, key):
+        try:
+		self.key = int(key)
+		return True
+	except:
+		return False
 
-    def encrypt(self, key, input_file, output_file):
+    def encrypt(self,input_file, output_file):
         """ Preserves case, spacing and punctuation """
         with open(input_file) as text:
             self.text = text.read()
         ciphertext = ""
-
-        self.set_key(key)
 
         """ Used to jump to the next letter in the plaintext """
         offset = self.key
@@ -29,7 +31,7 @@ class RailfenceCipher():
                 if offset * j + i >= len(self.text):
                     continue
                 if len(ciphertext) >= len(self.text):
-                    ciphertext = ciphertext.strip("\n", "")
+                    ciphertext = ciphertext.replace("\n", "")
                     encrypted_file = open(output_file, 'w')
                     encrypted_file.write(ciphertext)
                     print "Created file: " + output_file
@@ -76,12 +78,10 @@ class RailfenceCipher():
         self.railLengths = railLengths
         self.railStarts = railStartIndexes
 
-    def decrypt(self, key, input_file, output_file):
+    def decrypt(self,input_file, output_file):
         """ Decrypts given ciphertext """
         with open(input_file) as text:
             self.text = text.read()#.replace('\n', "")
-
-        self.set_key(key)
         self.getRails()
         """ Current letter in the ciphertext """
         currentLetter = 0

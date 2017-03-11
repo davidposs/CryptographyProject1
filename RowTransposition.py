@@ -10,14 +10,18 @@ class RowTransposition():
         self.text_length = 0
         self.text = [[]]
 
-    def set_key(self, key):
-        temp = sorted(key)
-        """ Check if key has all consecutive values """
-        for i in range (0, len(temp)):
-            if not i + 1 == int(temp[i]):
-                print "Invalid key"
-                sys.exit(1)
-        self.key = [int(i) for i in key]
+    def setKey(self, key):
+	try:
+		temp = sorted(key)
+		""" Check if key has all consecutive values """
+		for i in range (0, len(temp)):
+		    if not i + 1 == int(temp[i]):
+		        print "Invalid key"
+		        sys.exit(1)
+		self.key = [int(i) for i in key]
+		return True
+	except:
+		return False
 
 
     def populate_matrix(self, input_text, len_pt, len_key):
@@ -45,9 +49,8 @@ class RowTransposition():
         """ Set the length here to know number of rows needed in encryption """
         self.text_length = len(plaintext)
 
-    def encrypt(self, key, input_file, output_file):
+    def encrypt(self, input_file, output_file):
         """ Creates a ciphertext after setting the plaintext matrix """
-        self.set_key(key)
         self.set_matrix(input_file)
         ciphertext = ""
         num_rows = self.text_length / len(self.key)
@@ -60,12 +63,11 @@ class RowTransposition():
         encrypted_file.write(ciphertext)
         print "Created file: " + output_file
 
-    def decrypt(self, key, input_file, output_file):
+    def decrypt(self, input_file, output_file):
         """ Decrypts a string, not a list or matrix """
         with open(input_file) as text:
             ciphertext = text.read().rstrip()
         plaintext = ""
-        self.set_key(key)
         num_rows = len(ciphertext) / len(self.key)
         for k in range(0, num_rows):
             for i in range(1, len(self.key) + 1):

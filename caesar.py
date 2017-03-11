@@ -12,12 +12,15 @@ class CaesarCipher():
         self.key = 0
         self.text = ""
 
-    def set_key(self, key):
-        self.key = int(key)
+    def setKey(self, key):
+        try:
+		self.key = int(key)
+		return True
+	except:
+		return False
 
-    def encrypt(self, key, input_file, output_file):
+    def encrypt(self, input_file, output_file):
         """ Encrypts given file, preserves punctuation and case """
-        self.set_key(key)
         self.key %= 26
         ciphertext = ""
         with open(input_file) as plaintext:
@@ -40,9 +43,8 @@ class CaesarCipher():
         encrypted_file.write(ciphertext)
         print "Created file: " + output_file
 
-    def decrypt(self, key, input_file, output_file):
+    def decrypt(self, input_file, output_file):
         """ Decrypts a given file """
-        self.set_key(key)
         self.key %= 26
         plaintext = ""
         with open(input_file) as encrypted_text:

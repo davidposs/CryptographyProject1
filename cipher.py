@@ -19,44 +19,74 @@ def main():
     if mode == "ENC":
             if cipher == 'vig':
                 vig = Vigenre()
-                vig.setKey(key)
-                vig.encrypt(input_file, output_file)
+                if(vig.setKey(key)):
+                	vig.encrypt(input_file, output_file)
+		else:
+			print "Key Error"
 
             elif cipher == 'ces':
                 ces = CaesarCipher()
-                ces.encrypt(key, input_file, output_file)
+		if(ces.setKey(key)):
+                	ces.encrypt(input_file, output_file)
+		else:
+			print "Key Error"
 
             elif cipher == 'rts':
                 rts = RowTransposition()
-                rts.encrypt(key, input_file, output_file)
+		if(rts.setKey(key)):
+                	rts.encrypt(input_file, output_file)
+		else:
+			print "Key Error"
 
             elif cipher == 'rfc':
                 rfc = RailfenceCipher()
-                rfc.encrypt(key, input_file, output_file)
+		if(rfc.setKey(key)):
+                	rfc.encrypt(input_file, output_file)
+		else:
+			print "Key Error"
 
             elif cipher == 'plf':
                 plf = Play()
-                plf.setKey(key)
-                plf.encrypt(input_file, output_file)
+                if(plf.setKey(key)):
+                	plf.encrypt(input_file, output_file)
+		else:
+			print "Key Error"
 
     elif mode == "DEC":
             if cipher == 'vig':
                 vig = Vigenre()
-                vig.setKey(key)
-                vig.decrypt(input_file, output_file)
+                if(vig.setKey(key)):
+                	vig.decrypt(input_file, output_file)
+		else:
+			print "Key Error"
+
             elif cipher == 'ces':
                 ces = CaesarCipher()
-                ces.decrypt(key, input_file, output_file)
+		if(ces.setKey(key)):
+                	ces.decrypt(input_file, output_file)
+		else:
+			print "Key Error"
+
             elif cipher == 'rts':
                 rts = RowTransposition()
-                rts.decrypt(key, input_file, output_file)
+		if(rts.setKey(key)):
+                	rts.decrypt(input_file, output_file)
+		else:
+			print "Key Error"
+
             elif cipher == 'rfc':
                 rfc = RailfenceCipher()
-                rfc.decrypt(key, input_file, output_file)
+		if(rfc.setKey(key)):
+                	rfc.decrypt(input_file, output_file)
+		else:
+			print "Key Error"
+
             elif cipher == 'plf':
                 plf = Play()
-                plf.setKey(key)
-                plf.decrypt(input_file, output_file)
+                if(plf.setKey(key)):
+                	plf.decrypt(input_file, output_file)
+		else:
+			print "Key Error"
 
     else:
         print "Invalid mode: use DEC/ENC"

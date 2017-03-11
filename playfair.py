@@ -59,8 +59,16 @@ class Play:
             decList.append('x')
         for i in range(0, len(decList),2):
             decryptedText = self.checkPositionDEC(decList[i], decList[i+1],decryptedText)
-        if(decryptedText[-1:] == 'x'):
-            decryptedText = decryptedText[:-1]
+        #if(decryptedText[-1:] == 'x'):
+            #decryptedText = decryptedText[:-1]
+	xCount = 0
+	for i in range(0,len(decryptedText)):
+		if(decryptedText[i] is 'x'):
+			xCount += 1
+	decryptedText = decryptedText.replace('x','')
+	while xCount > 0:
+		decryptedText += 'x'
+		xCount -= 1
 
         decrypted_file = open(output_file, 'w')
         decrypted_file.write(decryptedText)
