@@ -5,6 +5,9 @@ Group Members:
 Language used: 
     python 2.7
 
+Extra Credit:
+    N/A
+
 Execution:
     $python ciphers.py <cipher> <key> <enc/dec> <input_file> <output_file>
 
