@@ -81,7 +81,7 @@ class RailfenceCipher():
     def decrypt(self,input_file, output_file):
         """ Decrypts given ciphertext """
         with open(input_file) as text:
-            self.text = text.read()#.replace('\n', "")
+            self.text = text.read().replace('\n', "")
         self.getRails()
         """ Current letter in the ciphertext """
         currentLetter = 0
