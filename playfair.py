@@ -1,3 +1,4 @@
+#!/usr/bin/python2.7
 class Play:
     def __init__(self):
         self.key = None

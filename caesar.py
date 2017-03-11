@@ -1,3 +1,5 @@
+#!/usr/bin/python2.7
+
 """ Declares and defines Caesar Cipher class
     Defines init, encrypt, and decrypt methods
     Preserves the case and punctuation of the original text
